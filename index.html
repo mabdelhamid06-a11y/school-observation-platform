@@ -573,7 +573,7 @@ startAuth();
 </script>
 
 <script>
-const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbwQPGLVYKz-A16xfk6cl4nnNaTktCJgOV9es3P4f-r7hYWnr0oLHXAVVvQw9gyr0zmM/exec';
+const APPS_SCRIPT_URL='https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbwUyZSipc6IRV2r5n3sy_cpRBv3XNr2u3OwQ-iM_COxUtRR7_o951VTOjLp_GdlfYQyhQ/exec';
 async function callGoogleApi(action,payload={}){const r=await fetch(APPS_SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action,...payload})});const x=await r.json();if(!x.ok)throw new Error(x.error||'تعذر الاتصال بالخادم');return x}
 async function loadSchoolContext(){try{const x=await callGoogleApi('context');window.CURRENT_SCHOOL={id:x.schoolId,name:x.schoolName,email:x.email,role:x.role};if(window.state){state.settings=state.settings||{};state.settings.school=x.schoolName;state.settings.schoolId=x.schoolId;if(typeof loadSettings==='function')loadSettings()}}catch(e){console.error(e);}}
 async function saveToGoogle(){const x=await callGoogleApi('saveState',{state});const e=document.getElementById('saveState');if(e)e.textContent='محفوظ في Google Sheets';return x}
